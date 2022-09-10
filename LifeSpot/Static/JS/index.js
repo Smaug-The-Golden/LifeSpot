@@ -1,9 +1,10 @@
-﻿function filterContent() {
+﻿/*Функция фильтрации контента*/
+function filterContent() {
     let elements = document.getElementsByClassName('video-container');
 
     for (let i = 0; i <= elements.length; i++) {
         let videoText = elements[i].querySelector(".video-title").innerText;
-        if (!videoText.toLowerCase().includes(inputParseFunction() /* Захват переменной теперь происходит с помощью замыкания */.toLowerCase())) {
+        if (!videoText.toLowerCase().includes(inputParseFunction().toLowerCase())) {
             elements[i].style.display = 'none';
         } else {
             elements[i].style.display = 'inline-block';
@@ -11,17 +12,10 @@
     }
 }
 
-/*
-* Сессия теперь создается в общей области видимости.
-* Будет "захватываться" тремя функциями
-* 
-* */
+ /*Сессия теперь создается в общей области видимости (будет "захватываться" тремя функциями)*/
 let session = new Map();
 
-/*
-* Сохранение данных сессии сразу при заходе пользователя на страницу
-* 
-* */
+/*Сохранение данных сессии сразу при заходе пользователя на страницу*/
 function handleSession() {
     // Сохраним время начала сессии
     session.set("startDate", new Date().toLocaleString())
@@ -29,10 +23,7 @@ function handleSession() {
     session.set("userAgent", window.navigator.userAgent)
 }
 
-/*
-* Проверка возраста пользователя
-* 
-* */
+/*Проверка возраста пользователя*/
 function checkAge() {
     session.set("age", prompt("Пожалуйста, введите ваш возраст?"))
 
@@ -45,20 +36,14 @@ function checkAge() {
     }
 }
 
-/*
-* Вывод данных сессии в консоль
-* 
-* */
+/* Вывод данных сессии в консоль*/
 let sessionLog = function logSession() {
     for (let result of session) {
         console.log(result)
     }
 }
 
-/*
-* Всплывающее окно будет показано по таймауту
-*
-* */
+/* Всплывающее окно будет показано по таймауту*/
 setTimeout(() =>
     alert("Нравится LifeSpot? " + '\n' + "Подпишитесь на наш Instagram @lifespot999!"),
     30000);
